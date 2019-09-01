@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "955889968177",
+    "firebase_url": "https://firechat-31926.firebaseio.com",
+    "project_id": "firechat-31926",
+    "storage_bucket": "firechat-31926.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955889968177:android:2c9117753eb18477",
+        "android_client_info": {
+          "package_name": "com.sedar.firechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955889968177-650racjuvks2r19cs82fhseeubq57juo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvbVDugaqUcCDiOMMiT747XRBZZdGW3wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955889968177-650racjuvks2r19cs82fhseeubq57juo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "955889968177-fo3shnev2g0e2hkn3lo531fvkrd55bcl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sedar.firechat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
