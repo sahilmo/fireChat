@@ -42,7 +42,9 @@ class CameraMock {
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFirestoreModule,
+    AngularFireModule
   ],
   providers: [
     StatusBar,
