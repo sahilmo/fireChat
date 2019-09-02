@@ -1,7 +1,8 @@
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { Firebase } from '@ionic-native/firebase/ngx';
+//import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 import { Platform } from '@ionic/angular';
 
 // https://medium.freecodecamp.org/how-to-get-push-notifications-working-with-ionic-4-and-firebase-ad87cc92394e
@@ -10,7 +11,7 @@ import { Platform } from '@ionic/angular';
 })
 export class FcmService {
 
-  constructor(private firebase: Firebase,
+  constructor(private firebase: FirebaseX,
     private afs: AngularFirestore,
     private platform: Platform,
     private auth: AuthService) { }
@@ -44,6 +45,7 @@ export class FcmService {
   }
 
   onNotifications() {
-    return this.firebase.onNotificationOpen();
+    // return this.firebase.onNotificationOpen();
+    return (this.firebase as any).onMessageReceived();
   }
 }

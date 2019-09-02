@@ -51,3 +51,62 @@ export const nicknameChanged = functions.firestore
                 console.log('err: ', err);
             });
     });
+
+export const createPush = functions.firestore
+    .document('/groups/{id}/messages/{msgID}')
+    .onCreate((snap, context) => {
+        let msg: any = null;
+
+        if (snap) {
+            msg = snap.data();
+        }
+
+        const groupId = context.params.id;
+
+        console.log('msg: ', msg);
+        console.log('group: ', groupId);
+
+        return admin.firestore().doc(`groups/${groupId}`).get()
+            .then(group => {
+                console.log('group data: ', group.data())
+                let members = [];
+                let data = group.data();
+                if (data) {
+                    members = data['users'];
+                }
+                console.log('members: ', members);
+
+                for (let mem of members) {
+                    if (mem.id != msg.from) {
+                        const payload = {
+                            notification: {
+                                title: 'New Message',
+                                body: 'Tap here to check it out!',
+                            },
+                            data: {
+                                chat: groupId
+                            }
+                        };
+                        console.log('send data: ', payload);
+
+                        admin.firestore().doc(`devices/${mem.id}`).get()
+                            .then(device => {
+                                let deviceData = device.data();
+                                if (deviceData) {
+                                    let token = deviceData['token'];
+                                    console.log('send to: ', token);
+                                    admin.messaging().sendToDevice(token, payload).then(() => {
+                                        console.log('PUSH SENT');
+                                    }, err => {
+                                        console.log('push err: ', err);
+                                    })
+                                }
+                            }, err => {
+                                console.log('device err: ', err);
+                            })
+                    }
+                }
+            }, err => {
+                console.log('groups err: ', err);
+            })
+    });
